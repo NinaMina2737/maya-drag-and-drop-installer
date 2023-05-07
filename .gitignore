@@ -1,0 +1,5 @@
+# Batch files
+*.bat
+
+# Compiled python files
+*.pyc

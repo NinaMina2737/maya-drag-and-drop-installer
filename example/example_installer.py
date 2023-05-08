@@ -42,7 +42,7 @@ _SCRIPTS_DIR_PATH = "scripts"
 
 # About shelf button
 _COMMAND = """
-<your command>
+print("Hello World!")
 """
 _ICON_DIR_PATH = "icons"
 _ICON_FILE_NAME = "pythonFamily.png" # default: "commandButton.png" or "pythonFamily.png"

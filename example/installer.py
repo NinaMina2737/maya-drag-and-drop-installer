@@ -104,10 +104,10 @@ def _distribute_mod_file():
 
     return True
 
-def _register_command_to_shelf(module_name=_MODULE_NAME, icon_dir_path=_ICON_DIR_PATH, icon_file_name=_ICON_FILE_NAME, annotation=_MODULE_NAME, command=_COMMAND, label=_MODULE_NAME, source_type=_SOURCE_TYPE):
+def _register_command_to_shelf(module_name=_MODULE_NAME, icon_dir_path=_ICON_DIR_PATH, icon_file_name=_ICON_FILE_NAME, default_icon_file_names=(_DEFAULT_MEL_ICON_NAME, _DEFAULT_PYTHON_ICON_NAME), annotation=_MODULE_NAME, command=_COMMAND, label=_MODULE_NAME, source_type=_SOURCE_TYPE):
     root_path = os.path.dirname(os.path.abspath(__file__))
     icon_file_path = os.path.join(root_path, icon_dir_path, icon_file_name)
-    if icon_file_name == _DEFAULT_MEL_ICON_NAME or icon_file_name == _DEFAULT_PYTHON_ICON_NAME:
+    if icon_file_name in default_icon_file_names:
         icon_file_path = icon_file_name
     else:
         if not os.path.exists(icon_file_path):

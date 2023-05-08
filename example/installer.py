@@ -131,6 +131,7 @@ def _register_command_to_shelf(module_name=_MODULE_NAME, icon_dir_path=_ICON_DIR
             annotation=annotation,
             command=command,
             image=icon_file_path,
+            imageOverlayLabel=label,
             label=label,
             parent=active_shelf_name,
             sourceType=source_type,

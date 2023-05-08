@@ -89,7 +89,8 @@ def _distribute_mod_file():
 
     template_module_file_content = template_module_file_content.replace(_MODULE_NAME_PLACEHOLDER, _MODULE_NAME)
     template_module_file_content = template_module_file_content.replace(_MODULE_VERSION_PLACEHOLDER, _MODULE_VERSION)
-    template_module_file_content = template_module_file_content.replace(_MODULE_DIR_PATH_PLACEHOLDER, root_path)
+    module_dir_path = os.path.join(root_path, _MODULE_DIR_PATH)
+    template_module_file_content = template_module_file_content.replace(_MODULE_DIR_PATH_PLACEHOLDER, module_dir_path)
     relative_scripts_dir_path = os.path.relpath(scripts_dir_path, template_module_dir_path)
     template_module_file_content = template_module_file_content.replace(_SCRIPTS_DIR_PATH_PLACEHOLDER, relative_scripts_dir_path)
     module_file_content = template_module_file_content

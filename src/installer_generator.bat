@@ -1,7 +1,7 @@
 @echo off
 setlocal enabledelayedexpansion
 
-set "TEMPLATE_SCRIPT_NAME=template_installer.py"
+set "TEMPLATE_SCRIPT_NAME=maya_drag_and_drop_installer_template.py"
 set "NEW_SCRIPT_NAME=new_installer.py"
 set "TEMPLATE_SCRIPT_PATH=%~dp0%TEMPLATE_SCRIPT_NAME%"
 set "NEW_SCRIPT_PATH=%~dp0%NEW_SCRIPT_NAME%"

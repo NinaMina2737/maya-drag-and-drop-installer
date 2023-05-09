@@ -12,6 +12,7 @@ _MODULE_NAME_PLACEHOLDER = "<MODULE_NAME>"
 _MODULE_VERSION_PLACEHOLDER = "<MODULE_VERSION>"
 _MODULE_DIR_PATH_PLACEHOLDER = "<MODULE_DIR_PATH>"
 _SCRIPTS_DIR_PATH_PLACEHOLDER = "<SCRIPTS_DIR_PATH>"
+_COMMAND_NEW_LINE_PLACEHOLDER = "<COMMAND_NEW_LINE>"
 
 _DEFAULT_MEL_ICON_NAME = "commandButton.png"
 _DEFAULT_PYTHON_ICON_NAME = "pythonFamily.png"
@@ -124,6 +125,7 @@ def _register_command_to_shelf(module_name=_MODULE_NAME, icon_dir_path=_ICON_DIR
                 button_to_register = button
                 break
 
+    command = command.replace(_COMMAND_NEW_LINE_PLACEHOLDER, "\r\n")
     if button_to_register:
         cmds.shelfButton(button_to_register, edit=True, command=command)
     else:

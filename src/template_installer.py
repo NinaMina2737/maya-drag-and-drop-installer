@@ -27,8 +27,9 @@ _DEFAULT_PYTHON_ICON_NAME = "pythonFamily.png"
 
 # About shelf button
 # ex) _COMMAND = """
-# import my_module
-# my_module.execute()
+# import my_module as script
+# reload(script)
+# script.execute()
 # """
 # ex) _ICON_DIR_NAME = "icons"
 # ex) _ICON_FILE_NAME = "myModule.png"

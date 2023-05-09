@@ -10,8 +10,8 @@ from maya import cmds, mel
 # Do not change the following variables.
 _MODULE_NAME_PLACEHOLDER = "<MODULE_NAME>"
 _MODULE_VERSION_PLACEHOLDER = "<MODULE_VERSION>"
-_MODULE_DIR_PATH_PLACEHOLDER = "<MODULE_DIR_PATH>"
-_SCRIPTS_DIR_PATH_PLACEHOLDER = "<SCRIPTS_DIR_PATH>"
+_MODULE_DIR_NAME_PLACEHOLDER = "<MODULE_DIR_NAME>"
+_SCRIPTS_DIR_NAME_PLACEHOLDER = "<SCRIPTS_DIR_NAME>"
 _COMMAND_NEW_LINE_PLACEHOLDER = "<COMMAND_NEW_LINE>"
 
 _DEFAULT_MEL_ICON_NAME = "commandButton.png"
@@ -22,15 +22,15 @@ _DEFAULT_PYTHON_ICON_NAME = "pythonFamily.png"
 # ex) _MODULE_FILE_NAME = "myModule.mod"
 # ex) _MODULE_NAME = "myModule"
 # ex) _MODULE_VERSION = "1.0.0"
-# ex) _MODULE_DIR_PATH = "modules"
-# ex) _SCRIPTS_DIR_PATH = "scripts"
+# ex) _MODULE_DIR_NAME = "modules"
+# ex) _SCRIPTS_DIR_NAME = "scripts"
 
 # About shelf button
 # ex) _COMMAND = """
 # import my_module
 # my_module.main()
 # """
-# ex) _ICON_DIR_RELATIVE_PATH = "icons"
+# ex) _ICON_DIR_NAME = "icons"
 # ex) _ICON_FILE_NAME = "myModule.png"
 # ex) _SOURCE_TYPE = "python"
 ####################################################################################################
@@ -38,14 +38,14 @@ _DEFAULT_PYTHON_ICON_NAME = "pythonFamily.png"
 _MODULE_FILE_NAME = "myModule.mod"
 _MODULE_NAME = "myModule"
 _MODULE_VERSION = "1.0.0"
-_MODULE_DIR_PATH = "modules"
-_SCRIPTS_DIR_PATH = "scripts"
+_MODULE_DIR_NAME = "modules"
+_SCRIPTS_DIR_NAME = "scripts"
 
 # About shelf button
 _COMMAND = """
 print("Hello World!")
 """
-_ICON_DIR_PATH = "icons"
+_ICON_DIR_NAME = "icons"
 _ICON_FILE_NAME = "pythonFamily.png" # default: "commandButton.png" or "pythonFamily.png"
 _SOURCE_TYPE = "python" # "mel" or "python"
 ####################################################################################################
@@ -66,7 +66,7 @@ def _distribute_mod_file():
     maya_version = cmds.about(version=True)[:4]
     default_module_dir_path = os.path.join(user_app_dir_path, maya_version, "modules")
     default_module_dir_path = default_module_dir_path.replace(os.sep, "/")
-    template_module_dir_path = os.path.join(root_path, _MODULE_DIR_PATH)
+    template_module_dir_path = os.path.join(root_path, _MODULE_DIR_NAME)
     template_module_file_path = os.path.join(template_module_dir_path, _MODULE_FILE_NAME)
 
     if default_module_dir_path not in maya_module_paths:
@@ -76,7 +76,7 @@ def _distribute_mod_file():
     if not os.path.exists(default_module_dir_path):
         os.makedirs(default_module_dir_path)
 
-    scripts_dir_path = os.path.join(root_path, _SCRIPTS_DIR_PATH)
+    scripts_dir_path = os.path.join(root_path, _SCRIPTS_DIR_NAME)
     if not os.path.exists(scripts_dir_path):
         cmds.error("\"{0}\" install failed. \"{1}\" does not exist.".format(_MODULE_NAME, scripts_dir_path))
         return False
@@ -90,10 +90,10 @@ def _distribute_mod_file():
 
     template_module_file_content = template_module_file_content.replace(_MODULE_NAME_PLACEHOLDER, _MODULE_NAME)
     template_module_file_content = template_module_file_content.replace(_MODULE_VERSION_PLACEHOLDER, _MODULE_VERSION)
-    module_dir_path = os.path.join(root_path, _MODULE_DIR_PATH)
-    template_module_file_content = template_module_file_content.replace(_MODULE_DIR_PATH_PLACEHOLDER, module_dir_path)
+    module_dir_path = os.path.join(root_path, _MODULE_DIR_NAME)
+    template_module_file_content = template_module_file_content.replace(_MODULE_DIR_NAME_PLACEHOLDER, module_dir_path)
     relative_scripts_dir_path = os.path.relpath(scripts_dir_path, template_module_dir_path)
-    template_module_file_content = template_module_file_content.replace(_SCRIPTS_DIR_PATH_PLACEHOLDER, relative_scripts_dir_path)
+    template_module_file_content = template_module_file_content.replace(_SCRIPTS_DIR_NAME_PLACEHOLDER, relative_scripts_dir_path)
     module_file_content = template_module_file_content
 
     module_file_path = os.path.join(default_module_dir_path, _MODULE_FILE_NAME)
@@ -105,7 +105,7 @@ def _distribute_mod_file():
 
     return True
 
-def _register_command_to_shelf(module_name=_MODULE_NAME, icon_dir_path=_ICON_DIR_PATH, icon_file_name=_ICON_FILE_NAME, default_icon_file_names=(_DEFAULT_MEL_ICON_NAME, _DEFAULT_PYTHON_ICON_NAME), annotation=_MODULE_NAME, command=_COMMAND, label=_MODULE_NAME, source_type=_SOURCE_TYPE):
+def _register_command_to_shelf(module_name=_MODULE_NAME, icon_dir_path=_ICON_DIR_NAME, icon_file_name=_ICON_FILE_NAME, default_icon_file_names=(_DEFAULT_MEL_ICON_NAME, _DEFAULT_PYTHON_ICON_NAME), annotation=_MODULE_NAME, command=_COMMAND, label=_MODULE_NAME, source_type=_SOURCE_TYPE):
     root_path = os.path.dirname(os.path.abspath(__file__))
     icon_file_path = os.path.join(root_path, icon_dir_path, icon_file_name)
     if icon_file_name in default_icon_file_names:

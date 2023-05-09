@@ -38,8 +38,8 @@ _DEFAULT_PYTHON_ICON_NAME = "pythonFamily.png"
 _MODULE_FILE_NAME = "<your module file name>.mod"
 _MODULE_NAME = "<your module name>"
 _MODULE_VERSION = "<your module version>"
-_MODULE_DIR_PATH = "<your module directory path>"
-_SCRIPTS_DIR_PATH = "<your scripts directory path>"
+_MODULE_DIR_NAME = "<your module directory path>"
+_SCRIPTS_DIR_NAME = "<your scripts directory path>"
 
 # About shelf button
 _COMMAND = """<your command>"""
@@ -64,7 +64,7 @@ def _distribute_mod_file():
     maya_version = cmds.about(version=True)[:4]
     default_module_dir_path = os.path.join(user_app_dir_path, maya_version, "modules")
     default_module_dir_path = default_module_dir_path.replace(os.sep, "/")
-    template_module_dir_path = os.path.join(root_path, _MODULE_DIR_PATH)
+    template_module_dir_path = os.path.join(root_path, _MODULE_DIR_NAME)
     template_module_file_path = os.path.join(template_module_dir_path, _MODULE_FILE_NAME)
 
     if default_module_dir_path not in maya_module_paths:
@@ -74,7 +74,7 @@ def _distribute_mod_file():
     if not os.path.exists(default_module_dir_path):
         os.makedirs(default_module_dir_path)
 
-    scripts_dir_path = os.path.join(root_path, _SCRIPTS_DIR_PATH)
+    scripts_dir_path = os.path.join(root_path, _SCRIPTS_DIR_NAME)
     if not os.path.exists(scripts_dir_path):
         cmds.error("\"{0}\" install failed. \"{1}\" does not exist.".format(_MODULE_NAME, scripts_dir_path))
         return False
@@ -88,7 +88,7 @@ def _distribute_mod_file():
 
     template_module_file_content = template_module_file_content.replace(_MODULE_NAME_PLACEHOLDER, _MODULE_NAME)
     template_module_file_content = template_module_file_content.replace(_MODULE_VERSION_PLACEHOLDER, _MODULE_VERSION)
-    module_dir_path = os.path.join(root_path, _MODULE_DIR_PATH)
+    module_dir_path = os.path.join(root_path, _MODULE_DIR_NAME)
     template_module_file_content = template_module_file_content.replace(_MODULE_DIR_PATH_PLACEHOLDER, module_dir_path)
     relative_scripts_dir_path = os.path.relpath(scripts_dir_path, template_module_dir_path)
     template_module_file_content = template_module_file_content.replace(_SCRIPTS_DIR_PATH_PLACEHOLDER, relative_scripts_dir_path)

@@ -41,12 +41,10 @@ _MODULE_DIR_PATH = "<your module directory path>"
 _SCRIPTS_DIR_PATH = "<your scripts directory path>"
 
 # About shelf button
-_COMMAND = """
-<your command>
-"""
+_COMMAND = """<your command>"""
 _ICON_DIR_PATH = "<your icon directory path>"
 _ICON_FILE_NAME = "<your icon file name>" # default: "commandButton.png" or "pythonFamily.png"
-_SOURCE_TYPE = "python" # "mel" or "python"
+_SOURCE_TYPE = "<your source type>" # "mel" or "python"
 ####################################################################################################
 
 def onMayaDroppedPythonFile(*args, **kwargs):

@@ -10,8 +10,8 @@ from maya import cmds, mel
 # Do not change the following variables.
 _MODULE_NAME_PLACEHOLDER = "<MODULE_NAME>"
 _MODULE_VERSION_PLACEHOLDER = "<MODULE_VERSION>"
-_MODULE_DIR_NAME_PLACEHOLDER = "<MODULE_DIR_NAME>"
-_SCRIPTS_DIR_NAME_PLACEHOLDER = "<SCRIPTS_DIR_NAME>"
+_MODULE_DIR_PATH_PLACEHOLDER = "<MODULE_DIR_PATH>"
+_SCRIPTS_DIR_PATH_PLACEHOLDER = "<SCRIPTS_DIR_PATH>"
 _COMMAND_NEW_LINE_PLACEHOLDER = "<COMMAND_NEW_LINE>"
 
 _DEFAULT_MEL_ICON_NAME = "commandButton.png"
@@ -28,7 +28,7 @@ _DEFAULT_PYTHON_ICON_NAME = "pythonFamily.png"
 # About shelf button
 # ex) _COMMAND = """
 # import my_module
-# my_module.main()
+# my_module.execute()
 # """
 # ex) _ICON_DIR_NAME = "icons"
 # ex) _ICON_FILE_NAME = "myModule.png"
@@ -91,9 +91,9 @@ def _distribute_mod_file():
     template_module_file_content = template_module_file_content.replace(_MODULE_NAME_PLACEHOLDER, _MODULE_NAME)
     template_module_file_content = template_module_file_content.replace(_MODULE_VERSION_PLACEHOLDER, _MODULE_VERSION)
     module_dir_path = os.path.join(root_path, _MODULE_DIR_NAME)
-    template_module_file_content = template_module_file_content.replace(_MODULE_DIR_NAME_PLACEHOLDER, module_dir_path)
+    template_module_file_content = template_module_file_content.replace(_MODULE_DIR_PATH_PLACEHOLDER, module_dir_path)
     relative_scripts_dir_path = os.path.relpath(scripts_dir_path, template_module_dir_path)
-    template_module_file_content = template_module_file_content.replace(_SCRIPTS_DIR_NAME_PLACEHOLDER, relative_scripts_dir_path)
+    template_module_file_content = template_module_file_content.replace(_SCRIPTS_DIR_PATH_PLACEHOLDER, relative_scripts_dir_path)
     module_file_content = template_module_file_content
 
     module_file_path = os.path.join(default_module_dir_path, _MODULE_FILE_NAME)

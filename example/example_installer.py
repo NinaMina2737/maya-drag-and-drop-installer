@@ -72,6 +72,9 @@ def _distribute_mod_file():
     default_module_dir_path = os.path.join(user_app_dir_path, maya_version, "modules")
     default_module_dir_path = default_module_dir_path.replace(os.sep, "/")
 
+    if not os.path.exists(template_module_dir_path):
+        os.makedirs(template_module_dir_path)
+
     with open(template_module_file_path, "w") as f:
         f.write("+ <MODULE_NAME> <MODULE_VERSION> <MODULE_DIR_PATH>\n")
         f.write("PYTHONPATH+:=<SCRIPTS_DIR_PATH>\n")

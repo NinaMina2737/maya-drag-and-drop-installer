@@ -65,14 +65,18 @@ def onMayaDroppedPythonFile(*args, **kwargs):
 def _distribute_mod_file():
     """Distribute the module file to the default module directory."""
     root_path = os.path.dirname(os.path.abspath(__file__))
-    maya_module_paths = mel.eval("getenv MAYA_MODULE_PATH")
+    template_module_dir_path = os.path.join(root_path, _MODULE_DIR_NAME)
+    template_module_file_path = os.path.join(template_module_dir_path, _TEMPLATE_MODULE_FILE_NAME)
     user_app_dir_path = cmds.internalVar(userAppDir=True)
     maya_version = cmds.about(version=True)[:4]
     default_module_dir_path = os.path.join(user_app_dir_path, maya_version, "modules")
     default_module_dir_path = default_module_dir_path.replace(os.sep, "/")
-    template_module_dir_path = os.path.join(root_path, _MODULE_DIR_NAME)
-    template_module_file_path = os.path.join(template_module_dir_path, _TEMPLATE_MODULE_FILE_NAME)
 
+    with open(template_module_file_path, "w") as f:
+        f.write("+ <MODULE_NAME> <MODULE_VERSION> <MODULE_DIR_PATH>\n")
+        f.write("PYTHONPATH+=<SCRIPTS_DIR_PATH>\n")
+
+    maya_module_paths = mel.eval("getenv MAYA_MODULE_PATH")
     if default_module_dir_path not in maya_module_paths:
         cmds.error("\"{0}\" install failed. \"{1}\" is not in MAYA_MODULE_PATH.".format(_MODULE_NAME, default_module_dir_path))
         return False

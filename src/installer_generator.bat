@@ -45,15 +45,6 @@ if /i "!VALUE!"=="" (
   call :ReplaceConstants "<your module version>" "!VALUE!"
 )
 
-:ReplaceModuleDirectoryName
-set /p "VALUE=Please enter the value for MODULE_DIR_NAME: "
-if /i "!VALUE!"=="" (
-  echo Invalid module directory name. Please try again.
-  goto :ReplaceModuleDirectoryName
-) else (
-  call :ReplaceConstants "<your module directory name>" "!VALUE!"
-)
-
 :ReplaceScriptsDirectoryName
 set /p "VALUE=Please enter the value for SCRIPTS_DIR_NAME: "
 if /i "!VALUE!"=="" (

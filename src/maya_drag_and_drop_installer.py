@@ -59,15 +59,11 @@ def onMayaDroppedPythonFile(*args, **kwargs):
 def _distribute_mod_file():
     """Distribute the module file to the default module directory."""
     root_path = os.path.dirname(os.path.abspath(__file__))
-    template_module_dir_path = os.path.join(root_path, "modules")
-    template_module_file_path = os.path.join(template_module_dir_path, _TEMPLATE_MODULE_FILE_NAME)
+    template_module_file_path = os.path.join(root_path, _TEMPLATE_MODULE_FILE_NAME)
     user_app_dir_path = cmds.internalVar(userAppDir=True)
     maya_version = cmds.about(version=True)[:4]
     default_module_dir_path = os.path.join(user_app_dir_path, maya_version, "modules")
     default_module_dir_path = default_module_dir_path.replace(os.sep, "/")
-
-    if not os.path.exists(template_module_dir_path):
-        os.makedirs(template_module_dir_path)
 
     with open(template_module_file_path, "w") as f:
         f.write("+ <MODULE_NAME> <MODULE_VERSION> <MODULE_DIR_PATH>\n")
@@ -95,9 +91,8 @@ def _distribute_mod_file():
 
     template_module_file_content = template_module_file_content.replace(_MODULE_NAME_PLACEHOLDER, _MODULE_NAME)
     template_module_file_content = template_module_file_content.replace(_MODULE_VERSION_PLACEHOLDER, _MODULE_VERSION)
-    module_dir_path = os.path.join(root_path, "modules")
-    template_module_file_content = template_module_file_content.replace(_MODULE_DIR_PATH_PLACEHOLDER, module_dir_path)
-    relative_scripts_dir_path = os.path.relpath(scripts_dir_path, template_module_dir_path)
+    template_module_file_content = template_module_file_content.replace(_MODULE_DIR_PATH_PLACEHOLDER, root_path)
+    relative_scripts_dir_path = os.path.relpath(scripts_dir_path, root_path)
     template_module_file_content = template_module_file_content.replace(_SCRIPTS_DIR_PATH_PLACEHOLDER, relative_scripts_dir_path)
     module_file_content = template_module_file_content
 

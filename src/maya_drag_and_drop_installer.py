@@ -8,6 +8,7 @@ from maya import cmds, mel
 
 ####################################################################################################
 # Do not change the following variables.
+_TEMPLATE_MODULE_FILE_NAME = "templateModule.mod"
 _MODULE_NAME_PLACEHOLDER = "<MODULE_NAME>"
 _MODULE_VERSION_PLACEHOLDER = "<MODULE_VERSION>"
 _MODULE_DIR_PATH_PLACEHOLDER = "<MODULE_DIR_PATH>"
@@ -66,7 +67,7 @@ def _distribute_mod_file():
     default_module_dir_path = os.path.join(user_app_dir_path, maya_version, "modules")
     default_module_dir_path = default_module_dir_path.replace(os.sep, "/")
     template_module_dir_path = os.path.join(root_path, _MODULE_DIR_NAME)
-    template_module_file_path = os.path.join(template_module_dir_path, _MODULE_FILE_NAME)
+    template_module_file_path = os.path.join(template_module_dir_path, _TEMPLATE_MODULE_FILE_NAME)
 
     if default_module_dir_path not in maya_module_paths:
         cmds.error("\"{0}\" install failed. \"{1}\" is not in MAYA_MODULE_PATH.".format(_MODULE_NAME, default_module_dir_path))

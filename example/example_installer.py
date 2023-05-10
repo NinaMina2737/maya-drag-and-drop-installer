@@ -36,14 +36,14 @@ _DEFAULT_PYTHON_ICON_NAME = "pythonFamily.png"
 # ex) _SOURCE_TYPE = "python"
 ####################################################################################################
 # About module file
-_MODULE_FILE_NAME = "myModule.mod"
-_MODULE_NAME = "myModule"
+_MODULE_FILE_NAME = "exampleModule.mod"
+_MODULE_NAME = "exampleModule"
 _MODULE_VERSION = "1.0.0"
 _SCRIPTS_DIR_NAME = "scripts"
 
 # About shelf button
 _COMMAND = """
-import my_module as script
+import example_module as script
 reload(script)
 script.execute()
 """

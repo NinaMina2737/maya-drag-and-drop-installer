@@ -70,7 +70,7 @@ def _distribute_mod_file():
 
     with open(template_module_file_path, "w") as f:
         f.write("+ <MODULE_NAME> <MODULE_VERSION> <MODULE_DIR_PATH>\n")
-        f.write("PYTHONPATH+=<SCRIPTS_DIR_PATH>\n")
+        f.write("PYTHONPATH+:=<SCRIPTS_DIR_PATH>\n")
 
     maya_module_paths = mel.eval("getenv MAYA_MODULE_PATH")
     if default_module_dir_path not in maya_module_paths:

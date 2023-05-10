@@ -93,6 +93,8 @@ def _distribute_mod_file():
     with open(template_module_file_path, "r") as f:
         template_module_file_content = f.read()
 
+    os.remove(template_module_file_path)
+
     template_module_file_content = template_module_file_content.replace(_MODULE_NAME_PLACEHOLDER, _MODULE_NAME)
     template_module_file_content = template_module_file_content.replace(_MODULE_VERSION_PLACEHOLDER, _MODULE_VERSION)
     template_module_file_content = template_module_file_content.replace(_MODULE_DIR_PATH_PLACEHOLDER, root_path)

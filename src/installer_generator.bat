@@ -1,7 +1,7 @@
 @echo off
 setlocal enabledelayedexpansion
 
-set "TEMPLATE_SCRIPT_NAME=maya_drag_and_drop_installer_template.py"
+set "TEMPLATE_SCRIPT_NAME=maya_drag_and_drop_installer.py"
 set "NEW_SCRIPT_NAME=new_installer.py"
 set "TEMPLATE_SCRIPT_PATH=%~dp0%TEMPLATE_SCRIPT_NAME%"
 set "NEW_SCRIPT_PATH=%~dp0%NEW_SCRIPT_NAME%"
@@ -43,15 +43,6 @@ if /i "!VALUE!"=="" (
   goto :ReplaceModuleVersion
 ) else (
   call :ReplaceConstants "<your module version>" "!VALUE!"
-)
-
-:ReplaceModuleDirectoryName
-set /p "VALUE=Please enter the value for MODULE_DIR_NAME: "
-if /i "!VALUE!"=="" (
-  echo Invalid module directory name. Please try again.
-  goto :ReplaceModuleDirectoryName
-) else (
-  call :ReplaceConstants "<your module directory name>" "!VALUE!"
 )
 
 :ReplaceScriptsDirectoryName

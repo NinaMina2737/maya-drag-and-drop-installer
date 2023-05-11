@@ -19,6 +19,7 @@ if not exist "%NEW_SCRIPT_PATH%" (
 )
 
 :ReplaceModuleFileName
+set "VALUE="
 set /p "VALUE=Please enter the value for MODULE_FILE_NAME: "
 if /i "!VALUE!"=="" (
   echo Invalid module file name. Please try again.
@@ -28,6 +29,7 @@ if /i "!VALUE!"=="" (
 )
 
 :ReplaceModuleName
+set "VALUE="
 set /p "VALUE=Please enter the value for MODULE_NAME: "
 if /i "!VALUE!"=="" (
   echo Invalid module name. Please try again.
@@ -37,6 +39,7 @@ if /i "!VALUE!"=="" (
 )
 
 :ReplaceModuleVersion
+set "VALUE="
 set /p "VALUE=Please enter the value for MODULE_VERSION: "
 if /i "!VALUE!"=="" (
   echo Invalid module version. Please try again.
@@ -46,6 +49,7 @@ if /i "!VALUE!"=="" (
 )
 
 :ReplaceScriptsDirectoryName
+set "VALUE="
 set /p "VALUE=Please enter the value for SCRIPTS_DIR_NAME: "
 if /i "!VALUE!"=="" (
   echo Invalid scripts directory name. Please try again.
@@ -69,6 +73,7 @@ if "!VALUE!"=="" (
 )
 
 :ReplaceSourceType
+set "VALUE="
 set /p "VALUE=Which source type do you want to use? (m/p): "
 if /i "!VALUE!"=="m" (
   set "SOURCE_TYPE=mel"
@@ -99,8 +104,10 @@ if /i "!USE_DEFAULT_ICON!"=="y" (
         goto :ReplaceIconData
     )
 )
+set "VALUE="
 set "VALUE=%ICON_DIR_NAME%"
 call :ReplaceConstants "<your icon directory name>" "!VALUE!"
+set "VALUE="
 set "VALUE=%ICON_FILE_NAME%"
 call :ReplaceConstants "<your icon file name>" "!VALUE!"
 goto :eof

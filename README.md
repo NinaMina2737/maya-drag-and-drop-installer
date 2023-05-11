@@ -1,5 +1,7 @@
 # Maya Drag and Drop Installer
 
+[Japanese](README-ja.md)
+
 This repository contains scripts that allow you to easily create an installer for your Maya tools that users can install by simply dragging and dropping a file into Maya.
 
 ## Environment

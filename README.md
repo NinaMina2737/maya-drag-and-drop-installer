@@ -13,12 +13,18 @@ This repository contains scripts that allow you to easily create an installer fo
 
 1. Download the [latest release](https://github.com/NinaMina2737/maya-drag-and-drop-installer/releases/latest) and extract the archive.
 
+## Requirements
+
+Before using this tool, please make sure to satisfy the following requirements:
+
+- You need to put all the script directories and files for your tool into one directory to designate the script directory for this tool.
+
 ## Usage
 
 1. Run `installer_generator.bat` and follow the prompts to generate the installer script (`new_installer.py`).
-2. Move the generated `new_installer.py` script into the same directory as your Maya tool script files.
+2. Move the generated `new_installer.py` script into the same directory as your Maya tool script directory.
 3. Distribute the `new_installer.py` script along with your tool script files.
-4. Users can now install your tools by dragging and dropping the new_installer.py file into Maya.
+4. Users can now install your tools by dragging and dropping the `new_installer.py` file into Maya.
 
 **Note:** Be careful where you place the completed installer, and be careful with the script directory you specify. When the installer is executed, the commands you set in the installer will be registered in the currently active shelf.
 
